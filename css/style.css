@@ -2,6 +2,41 @@ html, body {
     width: 100%;
     height: 100%;
 }
+
+.page-content {
+    height: 100%;
+}
+
+.mdl-layout__content{
+    height: 100%;
+}
+.mdl-layout__drawer {
+    border: none;
+}
+
+.mdl-navigation {
+    flex-grow: 1;
+}
+
+.mdl-layout__drawer-button {
+    color: white
+}
+
+.mdl-slider__label, .mdl-switch {
+    margin-left: 24px;
+    margin-bottom: 2px;
+    margin-right: 24px;
+}
+
+.mdl-switch {
+    margin-bottom: 16px;
+}
+
+.mdl-slider__container {
+    margin-bottom: 16px;
+}
+
+
 canvas[resize] {
     width: 100%;
     height: 100%;

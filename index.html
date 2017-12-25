@@ -1,44 +1,74 @@
 <!doctype html>
 <html class="no-js" lang="">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="manifest" href="site.webmanifest">
-        <link rel="apple-touch-icon" href="icon.png">
-        <!-- Place favicon.ico in the root directory -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/material.min.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link rel="stylesheet" href="css/style.css">
-    </head>
-    <body>
-        <!--[if lte IE 9]>
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
 
-        <!-- Add your site or application content here -->
-        <canvas id="paperCanvas" resize="true"></canvas>
+    <!-- Add your site or application content here -->
 
-        <script src="js/vendor/modernizr-3.5.0.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
-        <script src="js/plugins.js"></script>
-        <script src="js/vendor/material.min.js"></script>
-        <script src="js/vendor/paper-full.min.js"></script>
-        <script src="js/main.js"></script>
-        <script src="js/canvas.js" canvas="paperCanvas"></script>
 
-        <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-        <script>
-            window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
-            ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
-        </script>
-        <script src="https://www.google-analytics.com/analytics.js" async defer></script>
-    </body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
+        <div class="mdl-layout__drawer mdl-color--grey-900 mdl-color-text--grey-50">
+            <span class="mdl-layout-title">times-table-patterns</span>
+            <nav class="mdl-navigation mdl-color--grey-800">
+                <label class="mdl-slider__label" for="linesInput" id="linesInputLabel">Lines: 200</label>
+                <input class="mdl-slider mdl-js-slider" type="range" id="linesInput" min="0" max="2000" value="200">
+                <label class="mdl-slider__label" for="multiplierInput" id="multiplierInputLabel">Multiplier: 2</label>
+                <input class="mdl-slider mdl-js-slider" type="range" id="multiplierInput" min="0" max="200" value="2">
+                <label class="mdl-slider__label" for="animationInput">Animation</label>
+                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" id="animationInputLabel" for="animationInput">
+                    <input type="checkbox" id="animationInput" class="mdl-switch__input">
+                </label>
+                <label class="mdl-slider__label" for="speedInput" id="speedInputLabel">Speed: 0.0005</label>
+                <input class="mdl-slider mdl-js-slider" type="range" id="speedInput" min="0.0001" max="0.1" value="0.0005" step="0.0001">
+               
+                <div class="mdl-layout-spacer"></div>
+                <a class="mdl-navigation__link" href="">@leevilehtonen</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <div class="page-content">
+                <canvas id="paperCanvas" resize="true"></canvas>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+    <script src="js/plugins.js"></script>
+    <script src="js/vendor/material.min.js"></script>
+    <script src="js/vendor/paper-full.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/canvas.js" canvas="paperCanvas"></script>
+
+    <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+    <script>
+        window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+        ga('create', 'UA-XXXXX-Y', 'auto'); ga('send', 'pageview')
+    </script>
+    <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+</body>
+
 </html>
