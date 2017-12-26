@@ -1,14 +1,11 @@
-# times-table-patterns-webgl
+# times-table-patterns
 
 Web application for simulating different hidden patterns in times table and in Mandlebrot set
 
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
 ## Built With
 
-* [TODO](http://www.google.com) - The web framework used
+* [Paper.js](http://paperjs.org/) - Open source vector graphics scripting framework
+* [HTML5 Boilerplate](https://html5boilerplate.com/) - The web’s most popular front-end template
 
 ## Authors
 
