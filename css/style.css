@@ -16,6 +16,7 @@ html, body {
 
 .mdl-navigation {
     flex-grow: 1;
+    overflow-x: hidden;
 }
 
 .mdl-layout__drawer-button {

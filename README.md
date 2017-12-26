@@ -2,6 +2,7 @@
 
 Web application for simulating different hidden patterns in times table and in Mandlebrot set
 
+
 ## Built With
 
 * [Paper.js](http://paperjs.org/) - Open source vector graphics scripting framework
