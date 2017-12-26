@@ -22,18 +22,18 @@ html, body {
     color: white
 }
 
-.mdl-slider__label, .mdl-switch {
+.mdl-slider__label,.mdl-radio__label, .mdl-switch, .mdl-radio {
     margin-left: 24px;
-    margin-bottom: 2px;
+    margin-bottom: 8px;
     margin-right: 24px;
 }
 
-.mdl-switch {
-    margin-bottom: 16px;
+.mdl-switch, .mdl-slider__container{
+    margin-bottom: 24px;
 }
 
-.mdl-slider__container {
-    margin-bottom: 16px;
+.mdl-radio__label {
+    font-size: 14px
 }
 
 

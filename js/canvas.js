@@ -1,15 +1,14 @@
 window.onload = function () {
 
-    var linesSlider = $("#linesInput")[0];
-    var multiplierSlider = $("#multiplierInput")[0];
-    var speedSlider = $("#speedInput")[0];
-    var animationToggle = $("#animationInput")[0];
+    var linesSlider = $("#linesInput");
+    var multiplierSlider = $("#multiplierInput");
+    var speedSlider = $("#speedInput");
+    var animationToggle = $("#animationInput");
+    var colorRadios = $("input[name=colorOptions]");
 
-    var linesSliderLabel = $("#linesInputLabel")[0];
-    var multiplierSliderLabel = $("#multiplierInputLabel")[0];
-    var speedSliderLabel = $("#speedInputLabel")[0];
-    var animationToggleLabel = $("#animationInputLabel")[0];
-
+    var linesSliderLabel = $("#linesInputLabel");
+    var multiplierSliderLabel = $("#multiplierInputLabel");
+    var speedSliderLabel = $("#speedInputLabel");
 
     paper.setup('paperCanvas');
     paper.install(window)
@@ -18,6 +17,7 @@ window.onload = function () {
     var multiplier = 2
     var speed = 0.005
     var animation = false
+    var colorMode = 1 // 1 = Plain, 2 = Length to Color, 3 = Length to Opacity
 
     var background = createBackground()
     var circle = createCircle()
@@ -76,14 +76,27 @@ window.onload = function () {
                 new Path.Line({
                     from: [current.position.x, current.position.y],
                     to: [target.position.x, target.position.y],
-                    strokeColor: "hsl(" + scaleLengthToHSL(calculateDistance(
+                    strokeColor: getColor(calculateLength(
                         current.position.x, current.position.y,
-                        target.position.x, target.position.y
-                    )) + ",100%,50%)"
+                        target.position.x, target.position.y))
                 })
             )
         }
         return lines;
+    }
+
+    function getColor(length) {
+        switch(colorMode) {
+            case 1:
+                return 'white'
+                break
+            case 2:
+                return 'hsl('+scaleLengthToHSL(length)+', 100%, 50%)'
+                break
+            case 3:
+                return new Color(1,1,1,1-scaleLengthToOpacity(length))
+                break
+        }
     }
 
     function resizeBackground() {
@@ -114,12 +127,26 @@ window.onload = function () {
         }
     }
 
-    function calculateDistance(x1, y1, x2, y2) {
+    function recolorLines() {
+        for (var i = 0; i< sides; i++) {
+            lines.children[i].strokeColor = getColor(calculateLength(
+                lines.children[i].segments[0].point.x,
+                lines.children[i].segments[0].point.y,
+                lines.children[i].segments[1].point.x,
+                lines.children[i].segments[1].point.y
+            ))
+        }
+    }
+
+    function calculateLength(x1, y1, x2, y2) {
         return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2))
     }
 
     function scaleLengthToHSL(length) {
         return length * 360 / (getRadius() * 2)
+    }
+    function scaleLengthToOpacity(length) {
+        return length / (getRadius() * 2)
     }
 
     view.onResize = function (event) {
@@ -135,9 +162,9 @@ window.onload = function () {
     }
     function animate() {
         multiplier = (multiplier + speed)%sides ;
-        multiplierSlider.MaterialSlider.change(multiplier)
+        multiplierSlider[0].MaterialSlider.change(multiplier)
+        multiplierSliderLabel.html("Multiplier: " + multiplier.toFixed(3));
         repositionLines()
-        multiplierSliderLabel.innerHTML = "Multiplier: " + multiplier.toFixed(3);
     }
 
     function loadNewDots(event) {
@@ -147,24 +174,31 @@ window.onload = function () {
         lines = createLines()
     }
 
-    linesSlider.onchange = function (event) {
+    linesSlider.change(function () {
         sides = Math.floor(parseFloat(this.value))
+        multiplierSlider[0].max = sides
+        multiplierSlider[0].MaterialSlider.change(multiplier)
+        linesSliderLabel.html("Lines: " + sides)
         loadNewDots()
-        multiplierSlider.max = sides
-        multiplierSlider.MaterialSlider.change(multiplier)
-        linesSliderLabel.innerHTML = "Lines: " + sides
-    }
-    multiplierSlider.onchange = function (event) {
+    })
+    multiplierSlider.change(function () {
         multiplier = Math.floor(parseFloat(this.value))
+        multiplierSliderLabel.html("Multiplier: " + multiplier);
         loadNewDots()
-        multiplierSliderLabel.innerHTML = "Multiplier: " + multiplier;
-    }
-    speedSlider.onchange = function (event) {
+    })
+
+    speedSlider.change(function () {
         speed = parseFloat(this.value)
-        speedSliderLabel.innerHTML = "Speed: " + speed
-    }
-    animationToggle.onchange = function (event) {
-        animation = animationToggle.checked
-    }
+        speedSliderLabel.html("Speed: " + speed) 
+    })
+
+    animationToggle.change(function() {
+        animation = this.checked
+    })
+
+    colorRadios.change(function() {
+        colorMode = parseInt(this.value)
+        recolorLines()
+    })
 
 }
